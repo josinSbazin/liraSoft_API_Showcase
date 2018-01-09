@@ -58,6 +58,9 @@ namespace LiraSoftApiShowcase.Model
             LiraUtils.CreateModelFile(model, filePath);
         }
 
+        /// <summary>
+        ///  Создает простую пластину
+        /// </summary>
         public static void CreateSimplePlate(string filePath)
         {
             var model = CreateMainModel();
