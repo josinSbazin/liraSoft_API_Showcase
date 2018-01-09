@@ -11,6 +11,10 @@ namespace LiraSoftApiShowcase.Model
 {
     public static class LiraUtils
     {
+        /// <summary>
+        ///  Открывает файл по пути в Lira Soft
+        /// </summary>
+        /// <param name="filePath"></param>
         public static void OpenFileByLira(string filePath)
         {
             var registryKey = Registry.LocalMachine;
@@ -61,6 +65,9 @@ namespace LiraSoftApiShowcase.Model
             }
         }
 
+        /// <summary>
+        ///  Записывает в файл информацию
+        /// </summary>
         public static void CreateModelFile(IModel model, string filePath)
         {
             var ioHeader = ProjectIOHelperTypeInfo.get_TypeInfo().CreateIOHeader();

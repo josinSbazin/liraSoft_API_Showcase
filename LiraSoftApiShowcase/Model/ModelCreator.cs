@@ -1,14 +1,16 @@
-﻿using System.IO;
-using FEModel;
+﻿using FEModel;
 using FEModel.Element;
 using FEModel.Interfaces;
-using ProjectIOHelper;
 using PureAbstractions;
 
 namespace LiraSoftApiShowcase.Model
 {
     public static class ModelCreator
     {
+        /// <summary>
+        ///  Создает объект новой модели Lira Soft
+        /// </summary>
+        /// <returns></returns>
         public static IModel CreateMainModel()
         {
             var model = new CMainModel();
@@ -17,7 +19,7 @@ namespace LiraSoftApiShowcase.Model
         }
 
         /// <summary>
-        /// Создает пустую модель в Lira Soft
+        ///  Создает пустую модель в Lira Soft
         /// </summary>
         public static void CreateEmptyModel(string filePath)
         {
