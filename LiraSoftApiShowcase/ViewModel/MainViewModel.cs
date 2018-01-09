@@ -49,10 +49,10 @@ namespace LiraSoftApiShowcase.ViewModel
             {
                 var filePath = saveFileDialog.FileName;
 
-                // create empty model
+                // создаем пустую модель
                 ModelCreator.CreateEmptyModel(filePath);
 
-                // start lira
+                // открываем в лире
                 LiraUtils.OpenFileByLira(filePath);
             }
         }
@@ -70,10 +70,10 @@ namespace LiraSoftApiShowcase.ViewModel
             {
                 var filePath = saveFileDialog.FileName;
 
-                // create model with simple rod
+                // создаем модель с простым стержнем
                 ModelCreator.CreateSimpleRod(filePath);
 
-                // start lira
+                // открываем в лире
                 LiraUtils.OpenFileByLira(filePath);
             }
         }
@@ -91,10 +91,10 @@ namespace LiraSoftApiShowcase.ViewModel
             {
                 var filePath = saveFileDialog.FileName;
 
-                // create model with simple plate
+                // создаем модель с простой пластиной
                 ModelCreator.CreateSimplePlate(filePath);
 
-                // start lira
+                // открываем в лире
                 LiraUtils.OpenFileByLira(filePath);
             }
         }
