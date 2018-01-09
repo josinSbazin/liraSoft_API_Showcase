@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Windows;
+using FEModel.Interfaces;
 using Microsoft.Win32;
+using ProjectIOHelper;
+using PureAbstractions;
 
 namespace LiraSoftApiShowcase.Model
 {
@@ -55,6 +59,28 @@ namespace LiraSoftApiShowcase.Model
             {
                 MessageBox.Show("Ошибка:\n" + ex.Message);
             }
+        }
+
+        public static void CreateModelFile(IModel model, string filePath)
+        {
+            var ioHeader = ProjectIOHelperTypeInfo.get_TypeInfo().CreateIOHeader();
+            ioHeader.Clear();
+
+            var binaryPersistent = (IBinaryPersistent)ioHeader;
+
+            Stream output = File.Create(filePath);
+            BinaryWriter pWriter = new BinaryWriter(output);
+
+            output.Seek(0L, SeekOrigin.Begin);
+            binaryPersistent.SaveState(pWriter, null);
+
+            ioHeader.set_HeaderOffset(IProjectIOHeader.e_offset_type.OT_MODEL, pWriter.BaseStream.Position);
+            model.SaveState(pWriter, null);
+            output.Seek(0L, SeekOrigin.Begin);
+            binaryPersistent.SaveState(pWriter, null);
+
+            pWriter.Close();
+            output.Close();
         }
     }
 }

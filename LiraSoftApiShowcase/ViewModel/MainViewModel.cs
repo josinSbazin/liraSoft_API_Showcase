@@ -19,7 +19,7 @@ namespace LiraSoftApiShowcase.ViewModel
         public RelayCommand CreateSimpleRodCommand { get; private set; }
 
         // Строим простейшую архитектурную пластину
-        public RelayCommand CreateSimplePolygonCommand { get; private set; }
+        public RelayCommand CreateSimplePlateCommand { get; private set; }
 
         #region Private Methods
 
@@ -29,7 +29,7 @@ namespace LiraSoftApiShowcase.ViewModel
         {
             CreateEmptyModelCommand = new RelayCommand(CreateEmptyModel);
             CreateSimpleRodCommand = new RelayCommand(CreateSimpleRod);
-            CreateSimplePolygonCommand = new RelayCommand(CreateSimplePolygon);
+            CreateSimplePlateCommand = new RelayCommand(CreateSimplePlate);
         }
 
         #endregion
@@ -51,14 +51,53 @@ namespace LiraSoftApiShowcase.ViewModel
 
                 // create empty model
                 ModelCreator.CreateEmptyModel(filePath);
+
                 // start lira
                 LiraUtils.OpenFileByLira(filePath);
             }
         }
 
-        private void CreateSimpleRod() { }
+        private void CreateSimpleRod()
+        {
+            var saveFileDialog = new SaveFileDialog
+            {
+                Filter = "Файлы проекта расчета (*.fep)|*.fep",
+                FileName = Guid.NewGuid().ToString(),
+                AddExtension = true
+            };
 
-        private void CreateSimplePolygon() { }
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                var filePath = saveFileDialog.FileName;
+
+                // create model with simple rod
+                ModelCreator.CreateSimpleRod(filePath);
+
+                // start lira
+                LiraUtils.OpenFileByLira(filePath);
+            }
+        }
+
+        private void CreateSimplePlate()
+        {
+            var saveFileDialog = new SaveFileDialog
+            {
+                Filter = "Файлы проекта расчета (*.fep)|*.fep",
+                FileName = Guid.NewGuid().ToString(),
+                AddExtension = true
+            };
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                var filePath = saveFileDialog.FileName;
+
+                // create model with simple plate
+                ModelCreator.CreateSimplePlate(filePath);
+
+                // start lira
+                LiraUtils.OpenFileByLira(filePath);
+            }
+        }
 
         #endregion
 
